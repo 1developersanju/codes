@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<style>
+    body {
+        background-color: rgb(51, 51, 51);
+        font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+    }
+
+    .profile1 {
+        text-align: start;
+        background-color: rgb(124, 3, 124);
+        padding-top: 2%;
+        padding-bottom: 2%;
+        border-radius: 10px;
+        margin-top: 2%;
+    }
+
+    .profile2 {
+        background-color: rgb(154, 68, 165);
+        font-size: xxx-large;
+        font-weight: 300;
+        width: fit-content;
+        border-radius: 7px;
+        padding-left: 3%;
+        padding-right: 3%;
+        padding-top: 2%;
+        padding-bottom: 2%;
+        color: rgb(250, 212, 162);
+        border: none;
+    }
+
+    span {
+        font-size: xxx-large;
+        font-weight: 400;
+        color: aliceblue;
+    }
+
+    h1 {
+        font-size: medium;
+    }
+
+    .settimepop {
+        display: none;
+        position: fixed;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        background-color: rgba(0, 0, 0);
+    }
+
+    .contentstl {
+        background-color: rgb(82, 79, 79);
+        font-weight: 100;
+        color: azure;
+        font-size: larger;
+    }
+
+    .nb {
+        background-color: transparent;
+        color: azure;
+        border: none;
+        padding: 1%;
+        font-size: xx-large;
+        margin: 1%;
+    }
+
+    .ab {
+        background-color: rgb(148, 39, 250);
+        border-width: 3%;
+        border: solid;
+        border-color: rgb(255, 255, 255);
+        font-size: xxx-large;
+        color: azure;
+        padding: 1%;
+        border-radius: 50%;
+    }
+
+    .sg {
+        text-align: start;
+        border: none;
+        background-color: rgb(252, 84, 84);
+        border-radius: 20px;
+        font-size: xxx-large;
+        font-weight: 400;
+        color: aliceblue;
+
+    }
+
+    .dt {
+        text-align: start;
+        border: none;
+        background-color: lightslategrey;
+        border-radius: 20px;
+        font-size: xxx-large;
+        font-weight: 400;
+        color: aliceblue;
+        margin: 1%;
+    }
+</style>
+
+<body>
+    <div id="show">
+        <button id="get" class="dt" onclick="SerialConnect();">
+            <div id="get" class="sg">Connect</div> to Device
+        </button>
+        <button id="set" class="dt">
+            <div id="get" class="sg" onclick="">SET</div> to timer
+        </button>
+        <button id="Rtmie" class="dt">
+            <div id="get" class="sg">
+                <spam id="Rtd">00:00:00</spam>
+            </div> Real time
+        </button>
+
+        <div class="profile1">
+            <span style="margin-right: 3%;">s1</span>
+            <button class="profile2" onclick="smin(0)">
+                <p id="s1sm">00</p>
+                <h1>min</h1>
+            </button>
+            <span>:</span>
+            <button class="profile2" onclick="ssec(10)">
+                <p id="s1ss">00</p>
+                <h1>sec</h1>
+            </button>
+            <span>to</span>
+            <button class="profile2" onclick="smin(20)">
+                <p id="s1em">00</p>
+                <h1>min</h1>
+            </button>
+            <span>:</span>
+            <button class="profile2" onclick="ssec(30)">
+                <p id="s1es">00</p>
+                <h1>sec</h1>
+            </button>
+            <button class="profile2" style="margin-left: 5%; background-color: rgba(170, 98, 179,.3);"
+                onclick="sdate(40)">
+                <p id="s1d">All</p>
+                <h1>date</h1>
+            </button>
+            <button class="profile2" style="margin-left: 5%; background-color: rgba(170, 98, 179,.3);"
+                onclick="shour(50)">
+                <p id="s1h">All</p>
+                <h1>hour</h1>
+            </button>
+            <br>
+        </div>
+
+
+        <div class="profile1">
+            <span style="margin-right: 3%;">s1</span>
+            <button class="profile2" onclick="smin(1)">
+                <p id="s2sm">00</p>
+                <h1>min</h1>
+            </button>
+            <span>:</span>
+            <button class="profile2" onclick="ssec(11)">
+                <p id="s2ss">00</p>
+                <h1>sec</h1>
+            </button>
+            <span>to</span>
+            <button class="profile2" onclick="smin(21)">
+                <p id="s2em">00</p>
+                <h1>min</h1>
+            </button>
+            <span>:</span>
+            <button class="profile2" onclick="ssec(31)">
+                <p id="s2es">00</p>
+                <h1>sec</h1>
+            </button>
+            <button class="profile2" style="margin-left: 5%; background-color: rgba(170, 98, 179,.3); "
+                onclick="sdate(41)">
+                <p id="s2d">All</p>
+                <h1>date</h1>
+            </button>
+            <button class="profile2" style="margin-left: 5%; background-color: rgba(170, 98, 179,.3); "
+                onclick="shour(51)">
+                <p id="s2h">All</p>
+                <h1>hour</h1>
+            </button>
+        </div>
+
+
+        <div class="profile1">
+            <span style="margin-right: 3%;">s1</span>
+            <button class="profile2" onclick="smin(2)">
+                <p id="s3sm">00</p>
+                <h1>min</h1>
+            </button>
+            <span>:</span>
+            <button class="profile2" onclick="ssec(12)">
+                <p id="s3ss">00</p>
+                <h1>sec</h1>
+            </button>
+            <span>to</span>
+            <button class="profile2" onclick="smin(22)">
+                <p id="s3em">00</p>
+                <h1>min</h1>
+            </button>
+            <span>:</span>
+            <button class="profile2" onclick="ssec(32)">
+                <p id="s3es">00</p>
+                <h1>sec</h1>
+            </button>
+            <button class="profile2" style="margin-left: 5%; background-color: rgba(170, 98, 179,.3); "
+                onclick="sdate(42)">
+                <p id="s3d">All</p>
+                <h1>date</h1>
+            </button>
+            <button class="profile2" style="margin-left: 5%; background-color: rgba(170, 98, 179,.3); "
+                onclick="shour(52)">
+                <p id="s3h">All</p>
+                <h1>hour</h1>
+            </button>
+        </div>
+    </div>
+
+    <div id="Sethour" class="settimepop">
+        <div class="contentstl">
+            <div style="background-color: rgb(199, 168, 127);">
+                <h1 style="font-size: xx-large;">Set hour</h1>
+            </div>
+            <br>
+            <button class="ab" onclick="sta(62)">All</button> (click 'All' to select all hours)
+            <br>
+            <button class="nb" onclick="sta(0)">0</button>
+            <button class="nb" onclick="sta(1)">1</button>
+            <button class="nb" onclick="sta(2)">2</button>
+            <button class="nb" onclick="sta(3)">3</button>
+            <button class="nb" onclick="sta(4)">4</button>
+            <button class="nb" onclick="sta(5)">5</button>
+            <button class="nb" onclick="sta(6)">6</button>
+            <button class="nb" onclick="sta(7)">7</button>
+            <button class="nb" onclick="sta(8)">8</button>
+            <button class="nb" onclick="sta(9)">9</button>
+            <button class="nb" onclick="sta(10)">10</button>
+            <button class="nb" onclick="sta(11)">11</button>
+            <button class="nb" onclick="sta(12)">12</button>
+            <button class="nb" onclick="sta(13)">13</button>
+            <button class="nb" onclick="sta(14)">14</button>
+            <button class="nb" onclick="sta(15)">15</button>
+            <button class="nb" onclick="sta(16)">16</button>
+            <button class="nb" onclick="sta(17)">17</button>
+            <button class="nb" onclick="sta(18)">18</button>
+            <button class="nb" onclick="sta(19)">19</button>
+            <button class="nb" onclick="sta(20)">20</button>
+            <button class="nb" onclick="sta(21)">21</button>
+            <button class="nb" onclick="sta(22)">22</button>
+            <button class="nb" onclick="sta(23)">23</button>
+        </div>
+    </div>
+
+
+    <div id="Setmin" class="settimepop">
+        <div class="contentstl">
+            <div style="background-color: rgb(199, 168, 127); text-align: center;">
+                <h1 style="font-size: xx-large;">Set minute</h1>
+            </div>
+            <br>
+            <button class="nb" onclick="sta(0)">0</button>
+            <button class="nb" onclick="sta(1)">1</button>
+            <button class="nb" onclick="sta(2)">2</button>
+            <button class="nb" onclick="sta(3)">3</button>
+            <button class="nb" onclick="sta(4)">4</button>
+            <button class="nb" onclick="sta(5)">5</button>
+            <button class="nb" onclick="sta(6)">6</button>
+            <button class="nb" onclick="sta(7)">7</button>
+            <button class="nb" onclick="sta(8)">8</button>
+            <button class="nb" onclick="sta(9)">9</button>
+            <button class="nb" onclick="sta(10)">10</button>
+            <button class="nb" onclick="sta(11)">11</button>
+            <button class="nb" onclick="sta(12)">12</button>
+            <button class="nb" onclick="sta(13)">13</button>
+            <button class="nb" onclick="sta(14)">14</button>
+            <button class="nb" onclick="sta(15)">15</button>
+            <button class="nb" onclick="sta(16)">16</button>
+            <button class="nb" onclick="sta(17)">17</button>
+            <button class="nb" onclick="sta(18)">18</button>
+            <button class="nb" onclick="sta(19)">19</button>
+            <button class="nb" onclick="sta(20)">20</button>
+            <button class="nb" onclick="sta(21)">21</button>
+            <button class="nb" onclick="sta(22)">22</button>
+            <button class="nb" onclick="sta(23)">23</button>
+            <button class="nb" onclick="sta(24)">24</button>
+            <button class="nb" onclick="sta(25)">25</button>
+            <button class="nb" onclick="sta(26)">26</button>
+            <button class="nb" onclick="sta(27)">27</button>
+            <button class="nb" onclick="sta(28)">28</button>
+            <button class="nb" onclick="sta(29)">29</button>
+            <button class="nb" onclick="sta(30)">30</button>
+            <button class="nb" onclick="sta(31)">31</button>
+            <button class="nb" onclick="sta(32)">32</button>
+            <button class="nb" onclick="sta(33)">33</button>
+            <button class="nb" onclick="sta(34)">34</button>
+            <button class="nb" onclick="sta(35)">35</button>
+            <button class="nb" onclick="sta(36)">36</button>
+            <button class="nb" onclick="sta(37)">37</button>
+            <button class="nb" onclick="sta(38)">38</button>
+            <button class="nb" onclick="sta(39)">39</button>
+            <button class="nb" onclick="sta(40)">40</button>
+            <button class="nb" onclick="sta(41)">41</button>
+            <button class="nb" onclick="sta(42)">42</button>
+            <button class="nb" onclick="sta(43)">43</button>
+            <button class="nb" onclick="sta(44)">44</button>
+            <button class="nb" onclick="sta(45)">45</button>
+            <button class="nb" onclick="sta(46)">46</button>
+            <button class="nb" onclick="sta(47)">47</button>
+            <button class="nb" onclick="sta(48)">48</button>
+            <button class="nb" onclick="sta(49)">49</button>
+            <button class="nb" onclick="sta(50)">50</button>
+            <button class="nb" onclick="sta(51)">51</button>
+            <button class="nb" onclick="sta(52)">52</button>
+            <button class="nb" onclick="sta(53)">53</button>
+            <button class="nb" onclick="sta(54)">54</button>
+            <button class="nb" onclick="sta(55)">55</button>
+            <button class="nb" onclick="sta(56)">56</button>
+            <button class="nb" onclick="sta(57)">57</button>
+            <button class="nb" onclick="sta(58)">58</button>
+            <button class="nb" onclick="sta(59)">59</button>
+        </div>4
+    </div>
+
+    <div id="Setsec" class="settimepop">
+        <div class="contentstl">
+            <div style="background-color: rgb(199, 168, 127); text-align: center;">
+                <h1 style="font-size: xx-large;">Set second</h1>
+            </div>
+            <br>
+            <button class="nb" onclick="sta(0)">0</button>
+            <button class="nb" onclick="sta(1)">1</button>
+            <button class="nb" onclick="sta(2)">2</button>
+            <button class="nb" onclick="sta(3)">3</button>
+            <button class="nb" onclick="sta(4)">4</button>
+            <button class="nb" onclick="sta(5)">5</button>
+            <button class="nb" onclick="sta(6)">6</button>
+            <button class="nb" onclick="sta(7)">7</button>
+            <button class="nb" onclick="sta(8)">8</button>
+            <button class="nb" onclick="sta(9)">9</button>
+            <button class="nb" onclick="sta(10)">10</button>
+            <button class="nb" onclick="sta(11)">11</button>
+            <button class="nb" onclick="sta(12)">12</button>
+            <button class="nb" onclick="sta(13)">13</button>
+            <button class="nb" onclick="sta(14)">14</button>
+            <button class="nb" onclick="sta(15)">15</button>
+            <button class="nb" onclick="sta(16)">16</button>
+            <button class="nb" onclick="sta(17)">17</button>
+            <button class="nb" onclick="sta(18)">18</button>
+            <button class="nb" onclick="sta(19)">19</button>
+            <button class="nb" onclick="sta(20)">20</button>
+            <button class="nb" onclick="sta(21)">21</button>
+            <button class="nb" onclick="sta(22)">22</button>
+            <button class="nb" onclick="sta(23)">23</button>
+            <button class="nb" onclick="sta(24)">24</button>
+            <button class="nb" onclick="sta(25)">25</button>
+            <button class="nb" onclick="sta(26)">26</button>
+            <button class="nb" onclick="sta(27)">27</button>
+            <button class="nb" onclick="sta(28)">28</button>
+            <button class="nb" onclick="sta(29)">29</button>
+            <button class="nb" onclick="sta(30)">30</button>
+            <button class="nb" onclick="sta(31)">31</button>
+            <button class="nb" onclick="sta(32)">32</button>
+            <button class="nb" onclick="sta(33)">33</button>
+            <button class="nb" onclick="sta(34)">34</button>
+            <button class="nb" onclick="sta(35)">35</button>
+            <button class="nb" onclick="sta(36)">36</button>
+            <button class="nb" onclick="sta(37)">37</button>
+            <button class="nb" onclick="sta(38)">38</button>
+            <button class="nb" onclick="sta(39)">39</button>
+            <button class="nb" onclick="sta(40)">40</button>
+            <button class="nb" onclick="sta(41)">41</button>
+            <button class="nb" onclick="sta(42)">42</button>
+            <button class="nb" onclick="sta(43)">43</button>
+            <button class="nb" onclick="sta(44)">44</button>
+            <button class="nb" onclick="sta(45)">45</button>
+            <button class="nb" onclick="sta(46)">46</button>
+            <button class="nb" onclick="sta(47)">47</button>
+            <button class="nb" onclick="sta(48)">48</button>
+            <button class="nb" onclick="sta(49)">49</button>
+            <button class="nb" onclick="sta(50)">50</button>
+            <button class="nb" onclick="sta(51)">51</button>
+            <button class="nb" onclick="sta(52)">52</button>
+            <button class="nb" onclick="sta(53)">53</button>
+            <button class="nb" onclick="sta(54)">54</button>
+            <button class="nb" onclick="sta(55)">55</button>
+            <button class="nb" onclick="sta(56)">56</button>
+            <button class="nb" onclick="sta(57)">57</button>
+            <button class="nb" onclick="sta(58)">58</button>
+            <button class="nb" onclick="sta(59)">59</button>
+        </div>
+    </div>
+
+    <div id="Setdate" class="settimepop">
+        <div class="contentstl">
+            <div style="background-color: rgb(199, 168, 127); text-align: center;">
+                <h1 style="font-size: xx-large;">Set date</h1>
+            </div>
+            <br>
+            <button class="ab" onclick="sta(61)">All</button> (click 'All' to select all dates)
+            <br>
+            <button class="nb" onclick="sta(1)">1</button>
+            <button class="nb" onclick="sta(2)">2</button>
+            <button class="nb" onclick="sta(3)">3</button>
+            <button class="nb" onclick="sta(4)">4</button>
+            <button class="nb" onclick="sta(5)">5</button>
+            <button class="nb" onclick="sta(6)">6</button>
+            <button class="nb" onclick="sta(7)">7</button>
+            <button class="nb" onclick="sta(8)">8</button>
+            <button class="nb" onclick="sta(9)">9</button>
+            <button class="nb" onclick="sta(10)">10</button>
+            <button class="nb" onclick="sta(11)">11</button>
+            <button class="nb" onclick="sta(12)">12</button>
+            <button class="nb" onclick="sta(13)">13</button>
+            <button class="nb" onclick="sta(14)">14</button>
+            <button class="nb" onclick="sta(15)">15</button>
+            <button class="nb" onclick="sta(16)">16</button>
+            <button class="nb" onclick="sta(17)">17</button>
+            <button class="nb" onclick="sta(18)">18</button>
+            <button class="nb" onclick="sta(19)">19</button>
+            <button class="nb" onclick="sta(20)">20</button>
+            <button class="nb" onclick="sta(21)">21</button>
+            <button class="nb" onclick="sta(22)">22</button>
+            <button class="nb" onclick="sta(23)">23</button>
+            <button class="nb" onclick="sta(24)">24</button>
+            <button class="nb" onclick="sta(25)">25</button>
+            <button class="nb" onclick="sta(26)">26</button>
+            <button class="nb" onclick="sta(27)">27</button>
+            <button class="nb" onclick="sta(28)">28</button>
+            <button class="nb" onclick="sta(29)">29</button>
+            <button class="nb" onclick="sta(30)">30</button>
+            <button class="nb" onclick="sta(31)">31</button>
+        </div>
+    </div>
+    </div>
+</body>
+
+
+<script>
+    var profile;
+    var deviceTime;
+    var prt;
+    var executionData = // start.min , end.min , start.sec , end.second , date , hour
+        [0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            0, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+            61, 61, 61, 61, 61, 61, 61, 61, 61, 61,
+            62, 62, 62, 62, 62, 62, 62, 62, 62, 62];
+
+    var Show = document.getElementById('show');
+    var hour = document.getElementById('Sethour');
+    var min = document.getElementById('Setmin');
+    var sec = document.getElementById('Setsec');
+    var date = document.getElementById('Setdate');
+
+    var q = setInterval(realTime, 1000);
+    function realTime() {
+        var d = new Date();
+        document.getElementById('Rtd').innerHTML = d.getHours() + ":" + d.getMinutes() + ":" + d.getSeconds();
+    }
+
+
+    function smin(p) {
+        profile = p;
+        Show.style.display = 'none'
+        min.style.display = 'block'
+    }
+    function ssec(p) {
+        profile = p;
+        Show.style.display = 'none'
+        sec.style.display = 'block'
+    }
+    function sdate(p) {
+        profile = p;
+        Show.style.display = 'none'
+        date.style.display = 'block'
+    }
+    function shour(p) {
+        profile = p;
+        Show.style.display = 'none'
+        hour.style.display = 'block'
+    }
+
+    function sta(num) {
+        executionData[profile] = num;
+        hour.style.display = 'none';
+        min.style.display = 'none';
+        sec.style.display = 'none';
+        date.style.display = 'none';
+        Show.style.display = 'block';
+        console.log(executionData);
+        update()
+    }
+
+    async function SerialConnect() {
+        if ("serial" in navigator) {
+            const port = await navigator.serial.requestPort();
+            prt = port;
+            await port.open({ baudRate: 9600 });
+Read();
+            write();
+        } else {
+            alert("this browser not supporting to connect to the TIMER. Try using chrome");
+        }
+    }
+
+    function StI(s) {
+        s = s.split(",");
+        for (let i = 0; i < s.length; i++) {
+            executionData[i] = parseInt(s[i]);
+        }
+        update();
+    }
+
+    async function Read() {
+        port = prt;
+        const decoder = new TextDecoderStream();
+        port.readable.pipeTo(decoder.writable);
+        const inputStream = decoder.readable;
+        const reader = inputStream.getReader();
+        var ipdata = "";
+
+        while (true) {
+            const { value, i } = await reader.read();
+            if (value) {
+                ipdata += value;
+                if (ipdata.length > 138) {
+                    StI(ipdata);
+                    ipdata = "";
+                    break;
+                }
+            }
+        }
+        reader.releaseLock();
+    }
+
+    function write() {
+        port = prt;
+        const encoder = new TextEncoderStream();
+        outputDone = encoder.readable.pipeTo(port.writable);
+        outputStream = encoder.writable;
+
+        const writer = outputStream.getWriter();
+            writer.write("ffghty");
+        writer.releaseLock();
+    }
+
+    function update() {
+
+        console.log(executionData);
+        document.getElementById('s1sm').innerHTML = its(executionData[0]);
+        document.getElementById('s2sm').innerHTML = its(executionData[1]);
+        document.getElementById('s3sm').innerHTML = its(executionData[2]);
+
+        document.getElementById('s1ss').innerHTML = its(executionData[10]);
+        document.getElementById('s2ss').innerHTML = its(executionData[11]);
+        document.getElementById('s3ss').innerHTML = its(executionData[12]);
+
+        document.getElementById('s1em').innerHTML = its(executionData[20]);
+        document.getElementById('s2em').innerHTML = its(executionData[21]);
+        document.getElementById('s3em').innerHTML = its(executionData[22]);
+
+        document.getElementById('s1es').innerHTML = its(executionData[30]);
+        document.getElementById('s2es').innerHTML = its(executionData[31]);
+        document.getElementById('s3es').innerHTML = its(executionData[32]);
+
+        document.getElementById('s1d').innerHTML = its(executionData[40]);
+        document.getElementById('s2d').innerHTML = its(executionData[41]);
+        document.getElementById('s3d').innerHTML = its(executionData[42]);
+
+        document.getElementById('s1h').innerHTML = its(executionData[50]);
+        document.getElementById('s2h').innerHTML = its(executionData[51]);
+        document.getElementById('s3h').innerHTML = its(executionData[52]);
+    }
+
+    function its(num) {
+        if (num < 10)
+            return ('0'.concat(num))
+
+        else if ((num === 61) || (num === 62))
+            return ("All")
+
+        else
+            return num
+    }
+
+
+</script>
+
+</html>
