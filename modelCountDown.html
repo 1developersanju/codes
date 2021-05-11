@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <style>
+      .mySlides {
+        display: none;
+      }
+  
+      body {
+        background-color: rgb(0, 0, 0);
+        font: 400 15px/1.8 'Roboto', sans-serif;
+      }
+  
+      /* The Modal (background) */
+     
+  
+     
+  
+     .cardA {
+
+        display: none;
+      /* Hidden by default */
+      position: fixed;
+      /* Stay in place */
+      z-index: 1;
+      /* Sit on top */
+      left: 0;
+      top: 0;
+     /* width: 50%;*/
+      /* Full width */
+     /* height: 50%;*/
+      /* Full height */
+      overflow: auto;
+      /* Enable scroll if needed */
+      background-color: rgb(0, 0, 0);
+      /* Fallback color */
+      background-color: rgba(0, 0, 0, 0.75);
+      /* Black w/ opacity */
+    }
+
+    .cardB {
+      background-color: #161616;
+      margin: 70px;
+      width: 600px;
+      padding: calc(1.5vw + 6px);
+      font-weight: 600;
+      color: #807e7e;
+      text-align: center;position:relative;height:200px;box-sizing: border-box;position: fixed;
+  /*  left: 50%;
+    top: 50%;*/
+    transform: translate(-50%, -50%);
+    }
+
+    ._cardB {
+            background-color: #161616;
+            width: 450px;
+            /*padding: 13% 0;*/
+            text-align: center;height:200px;box-sizing: border-box;position: fixed;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+        }
+    .ask-text{position:absolute;left: 49%;
+    top: 55%;
+    transform: translate(-50%, -50%);}
+        
+    #stp{margin-bottom:1px;}
+    #ins{margin-top:1px;}
+    .yes,.skip{cursor:pointer;}
+
+    button {
+      font-size: medium;
+      color: grey;
+      border: none;
+      background-color: transparent;
+      outline: none;
+    }
+
+    .yes:hover {
+      color: red;text-decoration:underline;
+    }
+    .Skip:hover{
+    color: red;text-decoration:underline;
+    } 
+     .timer{
+        position: absolute;
+        padding-left: 80%;
+        color: #807e7e;
+      }
+}
+  
+    </style>
+  
+  </head>
+  
+  <body>
+
+<div id="modal" class="cardA">
+    <div id="ask" class="_cardB">
+      <div class="ask-text">
+             
+        <div style="font-weight: 600; color: #807e7e;">
+          Can you guess where the sound
+          <br>
+          remainds you of in Kuala Lampur?
+        </div>
+        <br><br>
+        <button class="yes beep"
+            onclick="document.location = 'about.php';">YES</button>
+          <button class="Skip beep" style="color: rgb(100, 99, 99).display=('none'); padding-left: 10%;" onclick="document.getElementById('instruction').style.display=('block');document.getElementById('modal').style.display=('none');">NO,keep searching</button>
+      </div>
+
+<!--          <div id="timera" class="timer" style="font-weight: 200;" ></div><br>  
+ -->
+ <div id = "timera" class="timer">close in
+<span id = "closingtimer">20</span>s
+
+</div>
+
+    </div>
+  </div>
+ <div id="instruction" class="carda default">
+    <div class="cardb">
+    
+ 
+        <!-- TEXT HERE -->
+      </div>
+
+    <script>
+
+  
+
+   var x = setInterval(e,120000)
+ 
+ function e(){
+  document.getElementById('modal').style.display='block'
+  setTimeout(function(){document.getElementById('modal').style.display='none'},20000)
+}
+
+
+
+
+
+function closeMyAd() {
+document.getElementById("timera").style.display = "none" ;
+}
+
+var seconds = 140;
+ 
+function display() { 
+seconds --;
+if (seconds < 1) {
+closeMyAd();
+}
+else {
+document.getElementById( "closingtimer" ).innerHTML = seconds ;
+setTimeout("display()", 1000);
+}
+}
+
+display();
+
+
+    </script>
+
+  </body>
+  </html>
