@@ -1,24 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <style>
-      .mySlides {
-        display: none;
-      }
-  
-      body {
-        background-color: rgb(0, 0, 0);
-        font: 400 15px/1.8 'Roboto', sans-serif;
-      }
-  
-      /* The Modal (background) */
-     
-  
-     
-  
-     .cardA {
+  <style>
+    body {
+      background-color: rgb(0, 0, 0);
+      font: 400 15px/1.8 'Roboto', sans-serif;
+    }
 
-        display: none;
+    /* The Modal (background) */
+
+    .timedPopUpA {
+
+      display: none;
       /* Hidden by default */
       position: fixed;
       /* Stay in place */
@@ -26,9 +19,9 @@
       /* Sit on top */
       left: 0;
       top: 0;
-     /* width: 50%;*/
+      /* width: 50%;*/
       /* Full width */
-     /* height: 50%;*/
+      /* height: 50%;*/
       /* Full height */
       overflow: auto;
       /* Enable scroll if needed */
@@ -38,130 +31,101 @@
       /* Black w/ opacity */
     }
 
-    .cardB {
+    .timedPopUpB {
       background-color: #161616;
-      margin: 70px;
-      width: 600px;
-      padding: calc(1.5vw + 6px);
-      font-weight: 600;
-      color: #807e7e;
-      text-align: center;position:relative;height:200px;box-sizing: border-box;position: fixed;
-  /*  left: 50%;
-    top: 50%;*/
-    transform: translate(-50%, -50%);
+      width: 450px;
+      /padding: 13% 0;/
+      text-align: center;height:200px;box-sizing: border-box;position: fixed;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
     }
+    .prompt-text{position:absolute;left: 49%;
+      top: 55%;
+      transform: translate(-50%, -50%);}
 
-    ._cardB {
-            background-color: #161616;
-            width: 450px;
-            /*padding: 13% 0;*/
-            text-align: center;height:200px;box-sizing: border-box;position: fixed;
-    left: 50%;
-    top: 50%;
-    transform: translate(-50%, -50%);
-        }
-    .ask-text{position:absolute;left: 49%;
-    top: 55%;
-    transform: translate(-50%, -50%);}
-        
-    #stp{margin-bottom:1px;}
-    #ins{margin-top:1px;}
-    .yes,.skip{cursor:pointer;}
+      #stp{margin-bottom:1px;}
+      #ins{margin-top:1px;}
+      .yes,.skip{cursor:pointer;}
 
-    button {
-      font-size: medium;
-      color: grey;
-      border: none;
-      background-color: transparent;
-      outline: none;
-    }
+      button {
+        font-size: medium;
+        color: grey;
+        border: none;
+        background-color: transparent;
+        outline: none;
+      }
 
-    .yes:hover {
-      color: red;text-decoration:underline;
-    }
-    .Skip:hover{
-    color: red;text-decoration:underline;
-    } 
-     .timer{
+      .yes:hover {
+        color: red;text-decoration:underline;
+      }
+      .skip:hover{
+        color: red;text-decoration:underline;
+      }
+      .timer{
         position: absolute;
         padding-left: 80%;
         color: #807e7e;
       }
-}
-  
-    </style>
-  
-  </head>
-  
-  <body>
+    }
 
-<div id="modal" class="cardA">
-    <div id="ask" class="_cardB">
-      <div class="ask-text">
-             
+  </style>
+
+</head>
+
+<body>
+
+  <div id="modal" class="timedPopUpA">
+    <div class="timedPopUpB">
+      <div class="prompt-text">
+
         <div style="font-weight: 600; color: #807e7e;">
-          Can you guess where the sound
+          close model on pressing "No"
           <br>
-          remainds you of in Kuala Lampur?
+          modal opens after every 5 seconds.
         </div>
         <br><br>
-        <button class="yes beep"
-            onclick="document.location = 'about.php';">YES</button>
-          <button class="Skip beep" style="color: rgb(100, 99, 99).display=('none'); padding-left: 10%;" onclick="document.getElementById('instruction').style.display=('block');document.getElementById('modal').style.display=('none');">NO,keep searching</button>
+        <button class="yes"
+            onclick="document.location = 'map.php';">YES</button>
+          <button class="skip" style="color: rgb(100, 99, 99).display=('none'); padding-left: 10%;" onclick="dismissTimedPopUp();">No, keep searching</button>
       </div>
 
-<!--          <div id="timera" class="timer" style="font-weight: 200;" ></div><br>  
- -->
- <div id = "timera" class="timer">close in
-<span id = "closingtimer">20</span>s
-
-</div>
+      <div class="timer">Closes in <span id = "closingtimer"></span>s </div>
 
     </div>
   </div>
- <div id="instruction" class="carda default">
-    <div class="cardb">
-    
- 
-        <!-- TEXT HERE -->
-      </div>
+  <script>
+    const repeatModalPopUpSecondsConstant = 5;
+    const closeModalPopUpSecondsConstant = 10;
+    var timerTextVariable = closeModalPopUpSecondsConstant;
+    var showPopUpTimer = setInterval(showPopUp, repeatModalPopUpSecondsConstant * 1000);
+    var secondsTextTimer; 
+    function showPopUp(){
+      console.log('showing poppup..');
+      timerTextVariable = closeModalPopUpSecondsConstant;
+      document.getElementById('modal').style.display='block';
+      document.getElementById( "closingtimer" ).innerHTML = timerTextVariable;
+      secondsTextTimer = setInterval(updateTimerText, 1000);
+    }
 
-    <script>
+    function updateTimerText(){
+      console.log('updating timer text..' +timerTextVariable);
+      timerTextVariable = timerTextVariable - 1;
+      if(timerTextVariable <= 0){
+        console.log("Timer text is less than 0");
+        dismissTimedPopUp();
+        return
+      }
+      document.getElementById( "closingtimer" ).innerHTML = timerTextVariable;
+    }
 
-  
+    function dismissTimedPopUp(){
+        document.getElementById('modal').style.display='none';
+        clearInterval(secondsTextTimer);
+        clearInterval(showPopUpTimer);
+        showPopUpTimer = setInterval(showPopUp, repeatModalPopUpSecondsConstant * 1000);
+    }
+  </script>
 
-   var x = setInterval(e,120000)
- 
- function e(){
-  document.getElementById('modal').style.display='block'
-  setTimeout(function(){document.getElementById('modal').style.display='none'},20000)
-}
-
-
-
-
-
-function closeMyAd() {
-document.getElementById("timera").style.display = "none" ;
-}
-
-var seconds = 140;
- 
-function display() { 
-seconds --;
-if (seconds < 1) {
-closeMyAd();
-}
-else {
-document.getElementById( "closingtimer" ).innerHTML = seconds ;
-setTimeout("display()", 1000);
-}
-}
-
-display();
-
-
-    </script>
-
-  </body>
-  </html>
+</body>
+</html>
